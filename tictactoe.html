@@ -13,7 +13,7 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="tictactoe.css">
 </head>
-<body onload="main()">
+<body>
 <div class ='container-fluid'>
 	<form>
 		input red or black
@@ -25,35 +25,35 @@
 	<div class='row well'>
 		<div id = "row1" class="row">
 			<div class = "col-md-4">
-				<button id = "btn" type ="button" value=1 onclick="get_user_spot(this)"></button>
+				<button id = "btn" type ="button" value=0 onclick="get_user_spot(this)"></button>
 
 		    </div>
 			<div class = "col-md-4"> 
-				<button id = "btn" type ="button" value=2 onclick="get_user_spot(this)"> </button>
+				<button id = "btn" type ="button" value=1 onclick="get_user_spot(this)"> </button>
 			</div>
 			<div class = "col-md-4">
-			    <button id = "btn" type ="button" value=3 onclick="get_user_spot(this)"> </button>
+			    <button id = "btn" type ="button" value=2 onclick="get_user_spot(this)"> </button>
 			</div>
 		</div>
 		<div id = "row2" class="row">
+			<div class = "col-md-4">
+				<button id = "btn" type ="button" value=3 onclick="get_user_spot(this)"></button>
+			</div>
 			<div class = "col-md-4">
 				<button id = "btn" type ="button" value=4 onclick="get_user_spot(this)"></button>
 			</div>
 			<div class = "col-md-4">
 				<button id = "btn" type ="button" value=5 onclick="get_user_spot(this)"></button>
 			</div>
-			<div class = "col-md-4">
-				<button id = "btn" type ="button" value=6 onclick="get_user_spot(this)"></button>
-			</div>
 		</div>
 		<div id = "row3" class="row">
 			<div class = "col-md-4"> 
-				<button id = "btn" type ="button" value=7 onclick="get_user_spot(this)"></button>
+				<button id = "btn" type ="button" value=6 onclick="get_user_spot(this)"></button>
 			</div>
 			<div class = "col-md-4">
-				<button id = "btn" type ="button" value=8 onclick="get_user_spot(this)"></button>
+				<button id = "btn" type ="button" value=7 onclick="get_user_spot(this)"></button>
 			</div>
-			<div class = "col-md-4"><button id = "btn" type ="button" value=9 onclick="get_user_spot(this)"></button>
+			<div class = "col-md-4"><button id = "btn" type ="button" value=8 onclick="get_user_spot(this)"></button>
 			</div>
 		</div>
 
