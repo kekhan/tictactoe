@@ -105,55 +105,55 @@ function isUserWinner(){
 	/* this checks if the user has won. 
 	It loops through the winningArray then loops through users array of inputs to 
 	 check against winning array*/
-	 console.log("Checking if user is winner");
+	 // arrayUser = [a,b,c,d]
+	 var count =0;
+	 if(userinput_arr.length>=3){
+	 	for(var i=0; i<winningArray.length; i++){
+	 		for(var j=0; j<userinput_arr.length;j++){
+	 			if(winningArray[i].indexOf(userinput_arr[j])!==-1){
+	 				count++;
+	 				if(count===3){
+	 					console.log("user Winner");
+	 					console.log(winningArray[i]);
+	 					comp_turn=false;
+	 					user_turn=false;
 
+	 				}
+	 				else{
+	 					console.log("no wins for user yet");
+	 				}
+	 			}
+	 		}
+	 		count=0;
+	 	}
+	 }
 
-	
-
-	if(userinput_arr.length>=3){
-		for (var i=0;i<winningArray.length;i++){
-			for(var j=0;j<userinput_arr.length;j++){
-				if(winningArray[i].indexOf(userinput_arr[j])){
-						console.log(winningArray[i]);
-						comp_turn=false;
-						user_turn=false;
-						console.log("user wins");
-						//start=false;
-					}
-					else{
-						console.log("no win yet");
-					}
-
-				
-			}
-
-		}
-
-	}
-		
+	 
 }
 
 function isCompWinner(){
 	/* This function does the same as isUserWinner but for the computer */
-	console.log("Checking if comp is winner");
+	var count=0;
+	//console.log("Checking if comp is winner");
 	if(compinput_arr.length>=3){
 		for (var i=0;i<winningArray.length;i++){
 			for(var j=0;j<compinput_arr.length;j++){
-				if(winningArray[i].indexOf(compinput_arr[j])){
-				    console.log(winningArray[i]);	
-					comp_turn=false;
-					user_turn=false;
-					console.log("computer Wins")
-						//start=false;
+				if(winningArray[i].indexOf(compinput_arr[j])!== -1){
+					count++;
+					if(count===3){
+						console.log("Computer winner");
+						console.log(winningArray[i]);
+						comp_turn=false;
+						user_turn=false;
 					}
 					else{
-						console.log("no win yet");
-					}
-
-				
+						console.log("No wins for comp");
+					}   
 			}
 		}
+		count=0;
 
 	}		
 
+}
 }
