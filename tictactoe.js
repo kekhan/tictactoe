@@ -10,11 +10,13 @@ var color2;
 var winningArray=[[0,3,6],[1,4,7],[2,5,8],[0,1,2],[3,4,5],[6,7,8],[0,4,8],[2,4,6]];
 var player1=0;
 var player2=0;
-var winners=0;
+var winners=false;
+var win;
 
 
 
 /* declare all functions here*/
+
 
 function turns(){
 	/*This function will get input from html file for first turn*/
@@ -31,18 +33,17 @@ function turns(){
 		compSpot();
 	}
 	else{
-		document.getElementById('logOut').innerHTMl= "Invalid input,red or blue";
+		document.getElementById('logOut').innerHTML= "Invalid input,red or blue";
 	}
 }
 
 function get_user_spot(btn){
     /* this function gets the users click values from html file*/
     isUserWinner();
-    console.log("user",userinput_arr); 
-    console.log("all", allinput_arr);
-    checkBoardFull();
+    
+    
     isUserWinner();
-    if(winners>0){
+    if(winners===true){
     	user_turn=false;
     	comp_turn=false;
     }
@@ -69,24 +70,25 @@ function get_user_spot(btn){
     	user_turn=false;
     	comp_turn=true;
     	compSpot();
+    	checkBoardFull();
     }
    
 }
 
 function compSpot(){
 	/* this function gets the computers spot randomly*/
+
 	isCompWinner();
-	if(winners>0){
+	
+	if(winners){
     	user_turn=false;
     	comp_turn=false;
     }
 	
-	checkBoardFull();
+	
 	var numToStr;
 	var idPlaceHolder;
 	if(comp_turn){
-		//isCompWinner();
-		console.log('comp turn');
 
 		var comp_input = Math.floor(Math.random()*9);
 
@@ -98,9 +100,9 @@ function compSpot(){
 			numToStr = comp_input.toString();
 			idPlaceHolder='btn'+numToStr;
 
-			console.log(idPlaceHolder);
+			//console.log(idPlaceHolder);
 			var compBoardSpot =document.getElementsByClassName(idPlaceHolder)[0];
-			console.log(compBoardSpot);
+			//console.log(compBoardSpot);
 			compinput_arr.push(comp_input);
 			if(player1==0){
 				compBoardSpot.style.backgroundColor='blue';
@@ -118,6 +120,7 @@ function compSpot(){
 		comp_turn = false;
 		user_turn = true;
 		get_user_spot();
+		checkBoardFull();
 	}
 }
 
@@ -126,12 +129,18 @@ function checkBoardFull(){
 	 Shuts down the turns of each player*/
 
 
-	if(allinput_arr.length===9 && winners>0){
+	if(allinput_arr.length==9 && winners===false){
 		
-		console.log("board Full")
+		document.getElementById('logOut').innerHTML='Board Full:Tie';
 		user_turn=false;
 		comp_turn=false;
 		//start=false;
+	}
+	else if(allinput_arr.length==9 && winners===true){
+		document.getElementById('logOut').innerHTML='';
+		user_turn=false;
+		comp_turn=false;
+
 	}
 }
 
@@ -149,15 +158,15 @@ function isUserWinner(){
 	 				if(count==3){
 	 					comp_turn=false;
 	 					user_turn=false;
-	 					winners++;
-	 					document.getElementById('logOut').innerHTMl="User Wins";
-	 					console.log(winningArray[i]);
+	 					winners = true;
+	 					win ='You win';
+	 					element=document.getElementById('logOut')
+	 					element.innerHTML="You Win";
+	 					//console.log(winningArray[i]);
 	 					
 
 	 				}
-	 				else{
-	 					console.log("no wins for user yet");
-	 				}
+	 				
 	 			}
 	 		}
 	 		count=0;
@@ -170,7 +179,7 @@ function isUserWinner(){
 function isCompWinner(){
 	/* This function does the same as isUserWinner but for the computer */
 	var count=0;
-	console.log('Comp arr length=',compinput_arr.length);
+	//console.log('Comp arr length=',compinput_arr.length);
 
 	if(compinput_arr.length>=3){
 		for (var i=0;i<winningArray.length;i++){
@@ -181,16 +190,15 @@ function isCompWinner(){
 					if(count==3){
 						comp_turn=false;
 	 					user_turn=false;
-						winners++;
-						document.getElementById('logOut').innerHTMl="Computer Wins";
+						winners=true;
+						win = 'Computer wins';
+						var elemrnt=document.getElementById('logOut')
+						elemrnt.innerHTML="Computer Wins";
 						
-						console.log("Computer winner");
-						console.log('Computer',winningArray[i]);
+						//console.log("Computer winner");
+						//console.log('Computer',winningArray[i]);
 						
-					}
-					else{
-						console.log("No wins for comp");
-					}   
+					} 
 			}
 		}
 		count=0;
