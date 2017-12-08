@@ -90,12 +90,34 @@ function compSpot(){
 	var idPlaceHolder;
 	if(comp_turn){
 
-		var comp_input = Math.floor(Math.random()*9);
-
+		var comp_input;
 		
-		while(allinput_arr.indexOf(comp_input)!==-1){
+		if(allinput_arr.indexOf(4) === -1){
+			comp_input = 4;
+		}
+		else if(allinput_arr.indexOf(0)=== -1){
+			comp_input=0;
+
+		}
+		else if(allinput_arr.indexOf(2)===-1){
+			comp_input=2;
+		}
+		else if(allinput_arr.indexOf(6) === -1){
+			comp_input=6;
+		}
+		else if(allinput_arr.indexOf(8)===-1){
+			comp_input=8;
+		}
+		else{
+			comp_input = Math.floor(Math.random()*9);
+			while(allinput_arr.indexOf(comp_input)!==-1){
 			comp_input= Math.floor(Math.random()*9);
 		}
+
+		}
+
+		
+		
 		if(allinput_arr.indexOf(comp_input)===-1){
 			numToStr = comp_input.toString();
 			idPlaceHolder='btn'+numToStr;
