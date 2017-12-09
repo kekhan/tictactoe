@@ -77,6 +77,8 @@ function get_user_spot(btn){
 
 function compSpot(){
 	/* this function gets the computers spot randomly*/
+	var fourCorners=[0,2,6,8];
+	var compfirstSpot = fourCorners[Math.floor(Math.random()*fourCorners.length)];
 
 	isCompWinner();
 	
@@ -91,28 +93,28 @@ function compSpot(){
 	if(comp_turn){
 
 		var comp_input;
+		var nextCompSpot= Math.abs(userinput_arr[userinput_arr.length-1]-3);
+		console.log(nextCompSpot);
+		console.log('nesxt',nextCompSpot);
+
 		
-		if(allinput_arr.indexOf(4) === -1){
-			comp_input = 4;
+		if(allinput_arr.indexOf(compfirstSpot) === -1){
+			comp_input = compfirstSpot;
 		}
-		else if(allinput_arr.indexOf(0)=== -1){
-			comp_input=0;
+		else if(allinput_arr.indexOf(4)=== -1){
+			comp_input=4;
 
 		}
-		else if(allinput_arr.indexOf(2)===-1){
-			comp_input=2;
+		else if(allinput_arr.indexOf(nextCompSpot)=== -1){
+			comp_input= nextCompSpot;
 		}
-		else if(allinput_arr.indexOf(6) === -1){
-			comp_input=6;
-		}
-		else if(allinput_arr.indexOf(8)===-1){
-			comp_input=8;
-		}
+		
 		else{
 			comp_input = Math.floor(Math.random()*9);
-			while(allinput_arr.indexOf(comp_input)!==-1){
-			comp_input= Math.floor(Math.random()*9);
-		}
+			while(allinput_arr.indexOf(comp_input)!==-1)
+			{
+			    comp_input= Math.floor(Math.random()*9);
+		    }
 
 		}
 
