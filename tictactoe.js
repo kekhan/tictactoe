@@ -12,6 +12,8 @@ var player1=0;
 var player2=0;
 var winners=false;
 var win;
+var fourCorners=[0,2,6,8];
+var compfirstSpot = fourCorners[Math.floor(Math.random()*fourCorners.length)];
 
 
 
@@ -69,18 +71,22 @@ function get_user_spot(btn){
 
     	user_turn=false;
     	comp_turn=true;
-    	compSpot();
     	checkBoardFull();
+    	compSpot();
+    	
     }
    
 }
 
 function compSpot(){
 	/* this function gets the computers spot randomly*/
-	var fourCorners=[0,2,6,8];
-	var compfirstSpot = fourCorners[Math.floor(Math.random()*fourCorners.length)];
+	checkBoardFull();
 
 	isCompWinner();
+	var nextCompSpot= Math.abs(userinput_arr[userinput_arr.length-1]+1);
+	var countSpot=0;
+	var next= Math.abs(userinput_arr[userinput_arr.length-1]+3);
+	console.log('next',next);
 	
 	if(winners){
     	user_turn=false;
@@ -93,20 +99,25 @@ function compSpot(){
 	if(comp_turn){
 
 		var comp_input;
-		var nextCompSpot= Math.abs(userinput_arr[userinput_arr.length-1]-3);
+		
 		console.log(nextCompSpot);
 		console.log('nesxt',nextCompSpot);
-
-		
-		if(allinput_arr.indexOf(compfirstSpot) === -1){
-			comp_input = compfirstSpot;
-		}
-		else if(allinput_arr.indexOf(4)=== -1){
+		if(player1>0 &&  allinput_arr.indexOf(4)=== -1){
 			comp_input=4;
 
 		}
-		else if(allinput_arr.indexOf(nextCompSpot)=== -1){
-			comp_input= nextCompSpot;
+		else if(player1===0 && allinput_arr.indexOf(compfirstSpot) === -1){
+			comp_input = compfirstSpot;
+		}
+		else if(userinput_arr.length>0 && allinput_arr.indexOf(4)=== -1){
+			comp_input=4;
+		}
+		
+		else if(allinput_arr.indexOf(1)===-1){
+			comp_input=1;
+		}
+		else if(allinput_arr.indexOf(7)===-1){
+			comp_input=7;
 		}
 		
 		else{
@@ -144,28 +155,28 @@ function compSpot(){
 		comp_turn = false;
 		user_turn = true;
 		get_user_spot();
-		checkBoardFull();
+		
 	}
 }
 
 function checkBoardFull(){
 	/*this function checks if the board is full 
 	 Shuts down the turns of each player*/
+	 if(allinput_arr.length==9 && winners == true){
+		document.getElementById('logOut').innerHTML=win;
+		user_turn=false;
+		comp_turn=false;
 
+	}
 
-	if(allinput_arr.length==9 && winners===false){
+	else if(allinput_arr.length ==9 && winners ==false){
 		
 		document.getElementById('logOut').innerHTML='Board Full:Tie';
 		user_turn=false;
 		comp_turn=false;
-		//start=false;
+	
 	}
-	else if(allinput_arr.length==9 && winners===true){
-		document.getElementById('logOut').innerHTML='';
-		user_turn=false;
-		comp_turn=false;
-
-	}
+	
 }
 
 function isUserWinner(){
