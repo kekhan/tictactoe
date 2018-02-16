@@ -20,9 +20,9 @@ var compfirstSpot = fourCorners[Math.floor(Math.random()*fourCorners.length)];
 /* declare all functions here*/
 
 
-function turns(){
+function turns(btn){
 	/*This function will get input from html file for first turn*/
-	var submit = document.getElementById('color').value;
+	var submit = btn.value;
 	if(submit === 'blue'){
 		player1++;
 
@@ -51,8 +51,6 @@ function get_user_spot(btn){
     }
 
     if(user_turn){
-    	//isUserWinner();
-    	//console.log("users turn");
     	var user_input = btn.value;
     	user_input = Number(user_input);
     	// colors the square
@@ -86,8 +84,7 @@ function compSpot(){
 	var nextCompSpot= Math.abs(userinput_arr[userinput_arr.length-1]+1);
 	var countSpot=0;
 	var next= Math.abs(userinput_arr[userinput_arr.length-1]+3);
-	console.log('next',next);
-	
+
 	if(winners){
     	user_turn=false;
     	comp_turn=false;
